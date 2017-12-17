@@ -61,7 +61,7 @@ public:
 
 protected:
   LabelSelectionImageAdaptor() {}
-  virtual ~LabelSelectionImageAdaptor() {}
+  ~LabelSelectionImageAdaptor() ITK_OVERRIDE {}
 
 private:
   LabelSelectionImageAdaptor(const Self &); //purposely not implemented
