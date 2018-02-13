@@ -56,7 +56,7 @@ public:
   itkNewMacro( Self );
 
   /** ImageDimension constant */
-  itkStaticConstMacro( ImageDimension, unsigned int, TInputImage::ImageDimension );
+  static constexpr unsigned int ImageDimension = TInputImage::ImageDimension ;
 
   /** OutputType typedef support. */
   typedef typename Superclass::OutputType OutputType;
