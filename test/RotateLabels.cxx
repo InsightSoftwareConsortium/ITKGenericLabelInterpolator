@@ -46,8 +46,8 @@ RotateNTimes(typename ImageType::Pointer input,
   unsigned int number_of_rotations, std::string filename_prefix,
   std::string output_directory)
 {
-  typedef itk::VersorRigid3DTransform<double>           TransformType;
-  typedef itk::ResampleImageFilter<ImageType,ImageType> ResampleFilterType;
+  using TransformType = itk::VersorRigid3DTransform<double>;
+  using ResampleFilterType = itk::ResampleImageFilter<ImageType,ImageType>;
   TransformType::AxisType axis;
   axis[0]=0;
   axis[1]=1;
@@ -79,7 +79,7 @@ RotateNTimes(typename ImageType::Pointer input,
     rs->SetTransform(rot);
   }
   timer.Stop();
-  typedef itk::Testing::ComparisonImageFilter<ImageType,ImageType> ComparisonFilterType;
+  using ComparisonFilterType = itk::Testing::ComparisonImageFilter<ImageType,ImageType>;
   typename ComparisonFilterType::Pointer compare = ComparisonFilterType::New();
   compare->SetValidInput( input );
   compare->SetTestInput( out );
@@ -88,7 +88,7 @@ RotateNTimes(typename ImageType::Pointer input,
   " ( " << std::fixed << std::setprecision(2) << static_cast<double>(compare->GetNumberOfPixelsWithDifferences()) /
   input->GetLargestPossibleRegion().GetNumberOfPixels() * 100.<< 
   "% ) in " << timer.GetTotal() << "s" << std::endl;
-  typedef  itk::ImageFileWriter< ImageType  > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType  >;
   typename WriterType::Pointer writer = WriterType::New();
   writer->SetUseCompression(true);
   writer->SetInput( out );
@@ -106,10 +106,10 @@ template<class TImage,typename TCoordRep> class BSplineInterpolator : public itk
 template<class TImage,typename TCoordRep> class FixedGaussianInterpolator : public itk::GaussianInterpolateImageFunction<TImage,TCoordRep>
 {
   public:
-  typedef FixedGaussianInterpolator                                  Self;
-  typedef itk::GaussianInterpolateImageFunction<TImage, TCoordRep>   Superclass;
-  typedef itk::SmartPointer<Self>                                    Pointer;
-  typedef itk::SmartPointer<const Self>                              ConstPointer;
+  using Self = FixedGaussianInterpolator;
+  using Superclass = itk::GaussianInterpolateImageFunction<TImage, TCoordRep>;
+  using Pointer = itk::SmartPointer<Self>;
+  using ConstPointer = itk::SmartPointer<const Self>;
 
   /** Run-time type information (and related methods). */
   itkTypeMacro( FixedGaussianInterpolator, GaussianInterpolateImageFunction );
@@ -141,10 +141,10 @@ int RotateLabels(int argc, char *argv[])
     << numberOfRotations << std::endl;
     return EXIT_FAILURE;
   }
-  typedef unsigned char                       PixelType;
+  using PixelType = unsigned char;
   const   unsigned int                        Dimension = 3;
-  typedef itk::Image< PixelType, Dimension >  ImageType;
-  typedef itk::ImageFileReader<ImageType>     ReaderType;
+  using ImageType = itk::Image< PixelType, Dimension >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer r = ReaderType::New();
   r->SetFileName(inputFileName);
   r->Update();
@@ -152,38 +152,38 @@ int RotateLabels(int argc, char *argv[])
   std::cout << "Testing with " << numberOfRotations << " rotations..." << std::endl << std::endl;
 
   std::cout << "Nearest neighbor interpolator...                        " << std::flush;
-  typedef itk::NearestNeighborInterpolateImageFunction<ImageType,double> NNInterpolatorType;
+  using NNInterpolatorType = itk::NearestNeighborInterpolateImageFunction<ImageType,double>;
   NNInterpolatorType::Pointer nn_interp = NNInterpolatorType::New();
   RotateNTimes<ImageType>(r->GetOutput(), nn_interp, numberOfRotations, "nearest", outputDirectory);
 
   std::cout << "Linear interpolator...                                  " << std::flush;
-  typedef itk::LinearInterpolateImageFunction<ImageType,double> LInterpolatorType;
+  using LInterpolatorType = itk::LinearInterpolateImageFunction<ImageType,double>;
   LInterpolatorType::Pointer l_interp = LInterpolatorType::New();
   RotateNTimes<ImageType>(r->GetOutput(), l_interp, numberOfRotations, "linear", outputDirectory);
 
   std::cout << "Label Gaussian interpolator type...                     " << std::flush;
-  typedef itk::LabelImageGaussianInterpolateImageFunction<ImageType,double> LGInterpolatorType;
+  using LGInterpolatorType = itk::LabelImageGaussianInterpolateImageFunction<ImageType,double>;
   LGInterpolatorType::Pointer lg_interp = LGInterpolatorType::New();
   lg_interp->SetSigma(0.3);
   RotateNTimes<ImageType>(r->GetOutput(), lg_interp, numberOfRotations, "label_gaussian", outputDirectory);
 
   std::cout << "Generic label interpolator with nearest neighbor...     " << std::flush;
-  typedef itk::LabelImageGenericInterpolateImageFunction<ImageType,itk::NearestNeighborInterpolateImageFunction> GNNInterpolatorType;
+  using GNNInterpolatorType = itk::LabelImageGenericInterpolateImageFunction<ImageType,itk::NearestNeighborInterpolateImageFunction>;
   GNNInterpolatorType::Pointer gnn_interp = GNNInterpolatorType::New();
   RotateNTimes<ImageType>(r->GetOutput(), gnn_interp, numberOfRotations, "gl_nearest", outputDirectory);
 
   std::cout << "Generic label interpolator with linear interpolation... " << std::flush;
-  typedef itk::LabelImageGenericInterpolateImageFunction<ImageType,itk::LinearInterpolateImageFunction> GLInterpolatorType;
+  using GLInterpolatorType = itk::LabelImageGenericInterpolateImageFunction<ImageType,itk::LinearInterpolateImageFunction>;
   GLInterpolatorType::Pointer gl_interp = GLInterpolatorType::New();
   RotateNTimes<ImageType>(r->GetOutput(), gl_interp, numberOfRotations, "gl_linear", outputDirectory);
 
   std::cout << "Generic label interpolator with B-Spline interpolation...             " << std::flush;
-  typedef itk::LabelImageGenericInterpolateImageFunction<ImageType,BSplineInterpolator> GBSInterpolatorType;
+  using GBSInterpolatorType = itk::LabelImageGenericInterpolateImageFunction<ImageType,BSplineInterpolator>;
   GBSInterpolatorType::Pointer gbs_interp = GBSInterpolatorType::New();
   RotateNTimes<ImageType>(r->GetOutput(), gbs_interp, numberOfRotations, "gl_bspline", outputDirectory);
 
   std::cout << "Generic label interpolator with Gaussian interpolation...             " << std::flush;
-  typedef itk::LabelImageGenericInterpolateImageFunction<ImageType,FixedGaussianInterpolator> GGInterpolatorType;
+  using GGInterpolatorType = itk::LabelImageGenericInterpolateImageFunction<ImageType,FixedGaussianInterpolator>;
   GGInterpolatorType::Pointer gg_interp = GGInterpolatorType::New();
   RotateNTimes<ImageType>(r->GetOutput(), gg_interp, numberOfRotations, "gl_gaussian", outputDirectory);
 

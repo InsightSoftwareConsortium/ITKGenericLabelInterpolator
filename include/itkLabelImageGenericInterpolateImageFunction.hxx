@@ -37,7 +37,7 @@ void LabelImageGenericInterpolateImageFunction<TInputImage,TInterpolator, TCoord
    *  changing the adaptor's accepted value wouldn't work when called from a multi-threaded filter */
   if (image) {
     m_Labels.clear();
-    typedef itk::ImageRegionConstIterator<TInputImage> IteratorType;
+    using IteratorType = itk::ImageRegionConstIterator<TInputImage>;
     IteratorType it(image,image->GetLargestPossibleRegion());
     it.GoToBegin();
     for (; !it.IsAtEnd(); ++it) {

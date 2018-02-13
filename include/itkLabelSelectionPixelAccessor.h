@@ -40,13 +40,13 @@ template< class TInternalType, class TExternalType >
 class ITK_EXPORT LabelSelectionPixelAccessor
 {
 public:
-  /** External typedef. It defines the external aspect
+  /** External type alias. It defines the external aspect
    * that this class will exhibit. */
-  typedef TExternalType ExternalType;
+  using ExternalType = TExternalType;
 
-  /** Internal typedef. It defines the internal real
+  /** Internal type alias. It defines the internal real
    * representation of data. */
-  typedef TInternalType InternalType;
+  using InternalType = TInternalType;
 
   void SetAcceptedValue(TInternalType value) { m_AcceptedValue = value; }
 
