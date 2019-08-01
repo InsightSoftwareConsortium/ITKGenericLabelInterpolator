@@ -24,7 +24,7 @@
 namespace itk
 {
 
-template<typename TInputImage, template<typename, typename> typename TInterpolator , typename TCoordRep>
+template<typename TInputImage, template<typename, typename> class TInterpolator , typename TCoordRep>
 void LabelImageGenericInterpolateImageFunction<TInputImage,TInterpolator, TCoordRep>
 ::SetInputImage( const TInputImage *image ) {
   /* We have one adaptor and one interpolator per label to keep the class thread-safe:
@@ -55,7 +55,7 @@ void LabelImageGenericInterpolateImageFunction<TInputImage,TInterpolator, TCoord
   Superclass::SetInputImage(image);
 }
 
-template<typename TInputImage, template<typename, typename> typename TInterpolator , typename TCoordRep>
+template<typename TInputImage, template<typename, typename> class TInterpolator , typename TCoordRep>
 typename LabelImageGenericInterpolateImageFunction<TInputImage, TInterpolator, TCoordRep>
 ::OutputType
 LabelImageGenericInterpolateImageFunction<TInputImage, TInterpolator, TCoordRep>
