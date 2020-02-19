@@ -36,7 +36,7 @@ namespace Accessor
  * \ingroup ITKImageAdaptors
  * \ingroup GenericLabelInterpolator
  */
-template< class TInternalType, class TExternalType >
+template <class TInternalType, class TExternalType>
 class ITK_EXPORT LabelSelectionPixelAccessor
 {
 public:
@@ -48,13 +48,18 @@ public:
    * representation of data. */
   using InternalType = TInternalType;
 
-  void SetAcceptedValue(TInternalType value) { m_AcceptedValue = value; }
-
-  inline TExternalType Get(const TInternalType & input) const
+  void
+  SetAcceptedValue(TInternalType value)
   {
-    return (TExternalType)(
-             ( input == m_AcceptedValue ) ? 1 : 0 );
+    m_AcceptedValue = value;
   }
+
+  inline TExternalType
+  Get(const TInternalType & input) const
+  {
+    return (TExternalType)((input == m_AcceptedValue) ? 1 : 0);
+  }
+
 protected:
   TInternalType m_AcceptedValue;
 };

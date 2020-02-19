@@ -32,24 +32,20 @@ namespace itk
  * \ingroup ITKImageAdaptors
  * \ingroup GenericLabelInterpolator
  */
-template< class TImage, class TOutputPixelType >
-class ITK_EXPORT LabelSelectionImageAdaptor:public
-  ImageAdaptor< TImage,
-                Accessor::LabelSelectionPixelAccessor<
-                  typename TImage::PixelType,
-                  TOutputPixelType >   >
+template <class TImage, class TOutputPixelType>
+class ITK_EXPORT LabelSelectionImageAdaptor
+  : public ImageAdaptor<TImage, Accessor::LabelSelectionPixelAccessor<typename TImage::PixelType, TOutputPixelType>>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(LabelSelectionImageAdaptor);
 
   /** Standard class type alias. */
   using Self = LabelSelectionImageAdaptor;
-  using Superclass = ImageAdaptor< TImage, Accessor::LabelSelectionPixelAccessor<
-                          typename TImage::PixelType,
-                          TOutputPixelType > >;
+  using Superclass =
+    ImageAdaptor<TImage, Accessor::LabelSelectionPixelAccessor<typename TImage::PixelType, TOutputPixelType>>;
 
-  using Pointer = SmartPointer< Self >;
-  using ConstPointer = SmartPointer< const Self >;
+  using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -57,7 +53,9 @@ public:
   /** Run-time type information (and related methods). */
   itkTypeMacro(LabelSelectionImageAdaptor, ImageAdaptor);
 
-  void SetAcceptedValue(typename TImage::PixelType value) {
+  void
+  SetAcceptedValue(typename TImage::PixelType value)
+  {
     this->GetPixelAccessor().SetAcceptedValue(value);
   }
 

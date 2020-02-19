@@ -37,9 +37,8 @@ namespace itk
  * * \ingroup GenericLabelInterpolator
  */
 
-template <typename TInputImage,template<typename, typename> class TInterpolator, typename TCoordRep=double >
-class ITK_EXPORT LabelImageGenericInterpolateImageFunction :
-  public InterpolateImageFunction<TInputImage, TCoordRep>
+template <typename TInputImage, template <typename, typename> class TInterpolator, typename TCoordRep = double>
+class ITK_EXPORT LabelImageGenericInterpolateImageFunction : public InterpolateImageFunction<TInputImage, TCoordRep>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(LabelImageGenericInterpolateImageFunction);
@@ -52,10 +51,10 @@ public:
   using InputPixelType = typename TInputImage::PixelType;
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro( LabelImageGenericInterpolateImageFunction, InterpolateImageFunction );
+  itkTypeMacro(LabelImageGenericInterpolateImageFunction, InterpolateImageFunction);
 
   /** Method for creation through the object factory. */
-  itkNewMacro( Self );
+  itkNewMacro(Self);
 
   /** ImageDimension constant */
   static constexpr unsigned int ImageDimension = TInputImage::ImageDimension;
@@ -78,38 +77,40 @@ public:
   /** ContinuousIndex type alias support. */
   using ContinuousIndexType = typename Superclass::ContinuousIndexType;
 
-  using LabelSelectionAdaptorType = LabelSelectionImageAdaptor<TInputImage,double>;
+  using LabelSelectionAdaptorType = LabelSelectionImageAdaptor<TInputImage, double>;
 
   // The interpolator used for individual binary masks corresponding to each label
-  using InternalInterpolatorType = TInterpolator<LabelSelectionAdaptorType,TCoordRep>;
+  using InternalInterpolatorType = TInterpolator<LabelSelectionAdaptorType, TCoordRep>;
 
   /**
    * Evaluate at the given index
    */
-  OutputType EvaluateAtContinuousIndex(
-    const ContinuousIndexType & cindex ) const override
-    {
-    return this->EvaluateAtContinuousIndex( cindex, nullptr );
-    }
+  OutputType
+  EvaluateAtContinuousIndex(const ContinuousIndexType & cindex) const override
+  {
+    return this->EvaluateAtContinuousIndex(cindex, nullptr);
+  }
 
-  void SetInputImage( const TInputImage *image ) override;
+  void
+  SetInputImage(const TInputImage * image) override;
 
   /** Get the radius required for interpolation.
    *
    * This defines the number of surrounding pixels required to interpolate at
    * a given point.
    */
-  virtual SizeType GetRadius() const override
-    {
+  virtual SizeType
+  GetRadius() const override
+  {
     return SizeType::Filled(1);
-    }
+  }
 
 protected:
   LabelImageGenericInterpolateImageFunction() = default;
-  ~LabelImageGenericInterpolateImageFunction() override= default;
+  ~LabelImageGenericInterpolateImageFunction() override = default;
 
-  std::vector<typename InternalInterpolatorType::Pointer>   m_InternalInterpolators;
-  std::vector<typename LabelSelectionAdaptorType::Pointer>  m_LabelSelectionAdaptors;
+  std::vector<typename InternalInterpolatorType::Pointer>  m_InternalInterpolators;
+  std::vector<typename LabelSelectionAdaptorType::Pointer> m_LabelSelectionAdaptors;
   using LabelSetType = std::set<typename TInputImage::PixelType>;
   LabelSetType m_Labels;
 
@@ -117,14 +118,14 @@ private:
   /**
    * Evaluate function value at the given index
    */
-  virtual OutputType EvaluateAtContinuousIndex(
-    const ContinuousIndexType &, OutputType * ) const;
+  virtual OutputType
+  EvaluateAtContinuousIndex(const ContinuousIndexType &, OutputType *) const;
 };
 
 } // end namespace itk
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkLabelImageGenericInterpolateImageFunction.hxx"
+#  include "itkLabelImageGenericInterpolateImageFunction.hxx"
 #endif
 
 #endif
