@@ -1,20 +1,6 @@
 ITKGenericLabelInterpolator
 ===========================
 
-.. |CircleCI| image:: https://circleci.com/gh/InsightSoftwareConsortium/ITKGenericLabelInterpolator.svg?style=shield
-    :target: https://circleci.com/gh/InsightSoftwareConsortium/ITKGenericLabelInterpolator
-
-.. |TravisCI| image:: https://travis-ci.org/InsightSoftwareConsortium/ITKGenericLabelInterpolator.svg?branch=master
-    :target: https://travis-ci.org/InsightSoftwareConsortium/ITKGenericLabelInterpolator
-
-.. |AppVeyor| image:: https://img.shields.io/appveyor/ci/itkrobot/itkgenericlabelinterpolator.svg
-    :target: https://ci.appveyor.com/project/itkrobot/itkgenericlabelinterpolator
-
-=========== =========== ===========
-   Linux      macOS       Windows
-=========== =========== ===========
-|CircleCI|  |TravisCI|  |AppVeyor|
-=========== =========== ===========
 
 
 Overview
