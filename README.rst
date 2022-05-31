@@ -15,7 +15,7 @@ ITKGenericLabelInterpolator
 Overview
 --------
 
-This is a module for the `Insight Toolkit (ITK) <http://itk.org>`_ that
+This is a module for the `Insight Toolkit (ITK) <https://itk.org>`_ that
 provides a generic interpolator for label images to interpolate each label
 with an ordinary image interpolator, and return the label with the highest
 value. This is the idea used by the
@@ -25,13 +25,13 @@ programming, the proposed interpolator extends this idea to any image
 interpolator. Combined with linear interpolation, this results in similar or
 better accuracy and much improved computation speeds on a test image.
 
-For more information, see the `Insight Journal article <http://hdl.handle.net/10380/3506>`_::
+For more information, see the `Insight Journal article <https://hdl.handle.net/10380/3506>`_::
 
   Schaerer, J., Roche, F., Belaroussi, B.
   A generic interpolator for multi-label images
   The Insight Journal. January-December, 2014.
-  http://hdl.handle.net/10380/3506
-  http://www.insight-journal.org/browse/publication/950
+  https://hdl.handle.net/10380/3506
+  https://www.insight-journal.org/browse/publication/950
 
 
 Installation

@@ -27,7 +27,7 @@ setup(
                      'Please refer to:\n'
                      'Schaerer J., Roche F., Belaroussi B., '
                      '"A generic interpolator for multi-label images.", '
-                     'Insight Journal, January-December 2014, http://hdl.handle.net/10380/3506.',
+                     'Insight Journal, January-December 2014, https://hdl.handle.net/10380/3506.',
     classifiers=[
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python",
