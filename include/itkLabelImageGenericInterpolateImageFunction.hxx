@@ -24,8 +24,7 @@ namespace itk
 {
 
 template <typename TInputImage,
-          template <typename TInterpInputImage, typename TCoordRep>
-          class TInterpolator,
+          template <typename TInterpInputImage, typename TCoordRep> class TInterpolator,
           typename TCoordRep>
 void
 LabelImageGenericInterpolateImageFunction<TInputImage, TInterpolator, TCoordRep>::SetInputImage(
@@ -60,8 +59,7 @@ LabelImageGenericInterpolateImageFunction<TInputImage, TInterpolator, TCoordRep>
 }
 
 template <typename TInputImage,
-          template <typename TInterpInputImage, typename TCoordRep>
-          class TInterpolator,
+          template <typename TInterpInputImage, typename TCoordRep> class TInterpolator,
           typename TCoordRep>
 typename LabelImageGenericInterpolateImageFunction<TInputImage, TInterpolator, TCoordRep>::OutputType
 LabelImageGenericInterpolateImageFunction<TInputImage, TInterpolator, TCoordRep>::EvaluateAtContinuousIndex(

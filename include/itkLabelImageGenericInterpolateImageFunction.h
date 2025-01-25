@@ -38,8 +38,7 @@ namespace itk
  */
 
 template <typename TInputImage,
-          template <typename TInterpInputImage, typename TCoordRep>
-          class TInterpolator,
+          template <typename TInterpInputImage, typename TCoordRep> class TInterpolator,
           typename TCoordRep = double>
 class ITK_EXPORT LabelImageGenericInterpolateImageFunction : public InterpolateImageFunction<TInputImage, TCoordRep>
 {
