@@ -38,8 +38,7 @@ namespace itk
  */
 
 template <typename TInputImage,
-          template <typename TInterpInputImage, typename TCoordRep>
-          class TInterpolator,
+          template <typename TInterpInputImage, typename TCoordRep> class TInterpolator,
           typename TCoordRep = double>
 class ITK_EXPORT LabelImageGenericInterpolateImageFunction : public InterpolateImageFunction<TInputImage, TCoordRep>
 {
@@ -54,7 +53,7 @@ public:
   using InputPixelType = typename TInputImage::PixelType;
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(LabelImageGenericInterpolateImageFunction, InterpolateImageFunction);
+  itkOverrideGetNameOfClassMacro(LabelImageGenericInterpolateImageFunction);
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
