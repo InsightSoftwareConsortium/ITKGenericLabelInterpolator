@@ -12,7 +12,7 @@ itk_add_test(NAME GenericLabelInterpolatorRotateLabelsTest
     ${ITK_TEST_OUTPUT_DIR}/gl_gaussian_3.mha
     DATA{Baseline/gl_gaussian_3.mha}
   RotateLabels
-    DATA{Input/classification.mha}
+    DATA{Input/classification_s4.mha}
     ${ITK_TEST_OUTPUT_DIR}/
     3
   )
